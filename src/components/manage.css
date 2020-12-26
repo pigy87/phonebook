@@ -1,0 +1,248 @@
+@import url("https://fonts.googleapis.com/css2?family=Nerko+One&display=swap");
+#titleManage {
+    font-size: 40px;
+    font-family: 'Nerko One', sans-serif;
+    text-align: center;
+}
+
+#spanGreen {
+    color: green;
+}
+
+#spanYellow {
+    color: rgb(255, 187, 0)
+}
+
+#spanBlue {
+    color: rgba(0, 110, 255, 0.781)
+}
+
+.managePage {
+    position: relative;
+    height: 95vh;
+    backdrop-filter: contrast(0.4);
+    background: linear-gradient(0.25turn, rgba(128, 128, 128, 0.616), whitesmoke, rgba(128, 128, 128, 0.616));
+}
+
+#manageContact {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+.manageButtons {
+    font-size: 20px;
+    z-index: 1;
+    font-weight: 500;
+    color: rgb(43, 44, 44);
+    background: none;
+    margin: 1% 0;
+    border: 1px outset white;
+}
+
+.manageButtons:hover {
+    background-color: rgba(0, 110, 255, 0.781);
+}
+
+.footerP {
+    font-size: 15px;
+    z-index: 1;
+    font-weight: 500;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 110, 255, 0.781);
+    color: black;
+    text-align: center;
+}
+
+
+/*modals*/
+
+
+/*
+.modal {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    animation: fadeIn ease 5s;
+    -webkit-animation: fadeIn ease 5s;
+    -moz-animation: fadeIn ease 5s;
+    -o-animation: fadeIn ease 5s;
+    -ms-animation: fadeIn ease 5s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-ms-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.modal-main {
+    position: fixed;
+    border: 1px outset white;
+    width: 80%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 2% 0;
+}
+*/
+
+.createContactForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.createContactinput {
+    width: 80%
+}
+
+#handleSaveContact {
+    width: 40%
+}
+
+.numbersSection {
+    margin: 0 auto;
+    width: 100%;
+}
+
+#basicNumberInputAndAddButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.firstNumberInput {
+    width: 76%
+}
+
+
+/*ovde sam cackao*/
+
+.basicNumberInputAndAddButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 95%
+}
+
+.firstNumberInput {
+    width: 76%
+}
+
+.addNumberInputButton {
+    width: 4%;
+    padding: 0px;
+    align-items: center;
+}
+
+
+/*dovde*/
+
+#addNumberInputButton {
+    width: 4%;
+    padding: 0px;
+    align-items: center;
+}
+
+#addedNumberInputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/*
+#closeCreateModal {
+    width: 50%;
+    margin-top: 2%;
+}
+
+*/
+
+
+/*media queris*/
+
+@media only screen and (max-width: 425px) {
+    #titleManage {
+        font-size: 25px;
+        font-family: 'Nerko One', sans-serif;
+        text-align: center;
+    }
+    .manageButtons {
+        font-size: 17px;
+        z-index: 1;
+        font-weight: 500;
+        color: black;
+        background: none;
+        margin: 5px 0;
+    }
+    #manageContact {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        text-align: center;
+        padding-top: 7%;
+    }
+}
+
+@media only screen and (max-height: 400px) and (max-width: 1000px) {
+    #titleManage {
+        font-size: 20px;
+        font-family: 'Nerko One', sans-serif;
+        text-align: center;
+    }
+}

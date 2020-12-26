@@ -1,0 +1,215 @@
+#loginTitle {
+    font-size: 40px;
+    font-family: 'Nerko One', sans-serif;
+    text-align: center;
+}
+
+.loginP {
+    width: 300px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.loginInput {
+    width: 300px;
+    height: 25px;
+    border-radius: 100%;
+    border: none;
+    text-align: center;
+    box-shadow: 2px 4px rgb(70, 54, 54);
+}
+
+#loginButton {
+    margin-top: 1%;
+    width: 150px;
+    height: 40px;
+    margin-top: 2%;
+    border: none;
+    border-radius: 15%;
+    background-color: whitesmoke;
+    color: black;
+}
+
+.login {
+    height: 100vh;
+    backdrop-filter: contrast(0.4);
+    background: linear-gradient(0.25turn, rgba(128, 128, 128, 0.616), whitesmoke, rgba(128, 128, 128, 0.616));
+}
+
+.login:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    background-image: url(../images/phone_book.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+}
+
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 5%;
+    width: 50%;
+    height: 80%;
+    justify-content: center;
+    margin: auto;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 110, 255, 0.781);
+    color: black;
+    text-align: center;
+}
+
+@media only screen and (max-width: 680px) {
+    #loginForm {
+        width: 50%;
+        margin-left: 24%;
+    }
+    .loginInput {
+        width: 200px;
+        height: 15px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    #loginForm {
+        width: 50%;
+        margin-left: 24%;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    #loginForm {
+        width: 50%;
+        margin-left: 25%;
+    }
+    .loginInput {
+        width: 180px;
+        height: 15px;
+    }
+    #loginButton {
+        width: 100px;
+        height: 20px;
+        margin-top: 5%;
+        border: none;
+        border-radius: 15%;
+        background-color: whitesmoke;
+        color: black;
+    }
+}
+
+@media only screen and (max-width: 365px) {
+    #loginForm {
+        width: 50%;
+        margin-left: 22%;
+    }
+    .loginInput {
+        width: 180px;
+        height: 15px;
+    }
+}
+
+@media only screen and (max-height: 600px) and (max-width: 424px) {
+    #loginForm {
+        margin-top: 10%;
+        width: 50%;
+        margin-left: 25%;
+    }
+    .loginInput {
+        width: 180px;
+        height: 15px;
+    }
+    #loginTitle {
+        padding-top: 20%;
+    }
+    #loginButton {
+        width: 100px;
+        height: 20px;
+        margin-top: 5%;
+        border: none;
+        border-radius: 15%;
+        background-color: whitesmoke;
+        color: black;
+    }
+}
+
+
+/*landscape*/
+
+
+/*
+
+@media (orientation: landscape) {
+    .login {
+        height: 85vh;
+        backdrop-filter: contrast(0.4);
+    }
+    #loginForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-left: 5%;
+        width: 25%;
+        justify-content: center;
+        margin: auto;
+    }
+    #loginTitle {
+        font-size: 20px;
+    }
+    .loginInput {
+        width: 150px;
+        height: 15px;
+    }
+    #loginButton {
+        width: 80px;
+        height: 15px;
+        margin-top: 10%;
+        border: none;
+        border-radius: 15%;
+        background-color: whitesmoke;
+        color: black;
+    }
+}
+
+*/
+
+@media only screen and (max-height: 400px) and (max-width: 1000px) {
+    .login {
+        height: 85vh;
+        backdrop-filter: contrast(0.4);
+    }
+    #loginForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-left: 5%;
+        width: 25%;
+        justify-content: center;
+        margin: auto;
+    }
+    #loginTitle {
+        font-size: 20px;
+    }
+    .loginInput {
+        width: 150px;
+        height: 15px;
+    }
+    #loginButton {
+        width: 80px;
+        height: 15px;
+        margin-top: 10%;
+        border: none;
+        border-radius: 15%;
+        background-color: whitesmoke;
+        color: black;
+    }
+}
