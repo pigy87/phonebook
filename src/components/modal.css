@@ -70,7 +70,80 @@
     padding: 2% 0;
 }
 
-#closeCreateModal {
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.textInputs {
+    width: 80%
+}
+
+
+/*numbers*/
+
+.numbersSection {
+    margin: 0 auto;
+    width: 100%;
+}
+
+
+/*basic number */
+
+#basicNumberInputAndAddButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 80.50%;
+    margin: 0 auto;
+}
+
+.firstNumberInput {
+    width: 96%
+}
+
+.addNumberInputButton {
+    width: 4%;
+    padding: 0px;
+    align-items: center;
+}
+
+
+/*added number*/
+
+#divForAddedNumberInputsAndButtonsDivs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%
+}
+
+.addedNumberInputAndAddButtonDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    width: 80.50%;
+}
+
+.addedNumbersInputs {
+    width: 96%
+}
+
+.addNumberInputButton {
+    width: 4%;
+    padding: 0px;
+    align-items: center;
+}
+
+#closeCreateModalButton {
     width: 50%;
+    margin-top: 2%;
+}
+
+#handleSaveContact {
+    width: 40%;
     margin-top: 2%;
 }
