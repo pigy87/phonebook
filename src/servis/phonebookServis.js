@@ -32,25 +32,30 @@ const callServer = {
         })
 
         .then(response => {
-                if (response.status === 401) {
-                    alert(response.text)
+            if (response.status === 401) {
+                alert(response.statusText)
 
-                } else if (response.status === 200) {
-                    Emitter.emit("user_is_logged", { userIsLogged: true });
-                    alert("Successful Authorization")
-                    return response.json();
+            } else if (response.status === 200) {
+                Emitter.emit("user_is_logged", { userIsLogged: true });
+                alert("Successful Authorization")
+                return response.json();
 
-                } else {
-                    console.log('Error')
-                }
-            })
-            .then(data => token = data.token)
+            } else {
+                console.log('Error')
+            }
+        })
+
+        .then(data => {
+            if (data) {
+                token = data.token
+            }
+        })
 
     },
 
     saveNewContact(name, surName, email, numbers) {
         console.log('save new conatct method')
-        fetch(baseUrl + "/createcontact", {
+        return fetch(baseUrl + "/createcontact", {
             method: 'POST',
             cache: 'no-cache',
             credentials: 'same-origin',
@@ -66,7 +71,50 @@ const callServer = {
             })
         })
 
+    },
+
+    saveAnyway(name, surName, email, numbers, saveAnyway) {
+        console.log('saveAnyway conatct method')
+        return fetch(baseUrl + "/createcontact", {
+            method: 'POST',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': `${token}`
+            },
+            body: JSON.stringify({
+                contactName: name,
+                contactSurName: surName,
+                contactEmail: email,
+                contactNumbers: numbers,
+                saveAnyway: saveAnyway
+            })
+        })
+
+    },
+
+    overwrite(name, surName, email, numbers, overwrite) {
+        console.log('saveAnyway conatct method')
+        return fetch(baseUrl + "/createcontact", {
+            method: 'POST',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': `${token}`
+            },
+            body: JSON.stringify({
+                contactName: name,
+                contactSurName: surName,
+                contactEmail: email,
+                contactNumbers: numbers,
+                overWrite: overwrite
+            })
+        })
     }
+
+
 }
 
 

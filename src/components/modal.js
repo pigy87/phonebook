@@ -6,12 +6,15 @@ class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({
-      inputNumberId: 1
+      inputNumberId: 1,
+      contactAllreadyExists: false,
+      intervalId: null
     })
+
   }
 
   addPhoneName() {
-    let placeForNewphoneName = document.getElementById("divForAddedNumberInputsAndButtonsDivs"); /*ovde*/ 
+    let placeForNewphoneName = document.getElementById("divForAddedNumberInputsAndButtonsDivs"); /*ovde*/
 
     var select = document.createElement("SELECT");
     select.setAttribute("id", `phoneBasicName${this.state.inputNumberId}`);
@@ -48,7 +51,7 @@ class Modal extends React.Component {
   addMoreNumberFields() {
     this.addPhoneName();
 
-    let placeForNewNumberInput = document.getElementById("divForAddedNumberInputsAndButtonsDivs");/*ovde*/ 
+    let placeForNewNumberInput = document.getElementById("divForAddedNumberInputsAndButtonsDivs");/*ovde*/
 
     let addedInputAndButtonDiv = document.createElement("DIV");
     addedInputAndButtonDiv.setAttribute("class", "addedNumberInputAndAddButtonDiv");
@@ -71,40 +74,115 @@ class Modal extends React.Component {
 
   }
 
-
-  createNewContact() {
+   extractValues() {
 
     let name = document.getElementById('name').value;
     let surName = document.getElementById('surName').value;
     let email = document.getElementById('email').value;
-    
-    let typeOfNumber=document.getElementById('phoneBasicName').value;
+
+    let typeOfNumber = document.getElementById('phoneBasicName').value;
     let basicNumber = document.getElementById('number0').value;
-  
-    let basicPair= {
-      typeOfNumber:typeOfNumber,
-      number:basicNumber
+
+    let basicPair = {
+      typeOfNumber: typeOfNumber,
+      number: basicNumber
     };
-    
+
     let basicPairAndAddedPairs = [];
     basicPairAndAddedPairs.push(basicPair)
-    
-    const addedNumbersNameTypes = document.getElementsByClassName('addedSelects'); 
-    const addedNumbersValues=document.getElementsByClassName('addedNumbersInputs');
-  
+
+    const addedNumbersNameTypes = document.getElementsByClassName('addedSelects');
+    const addedNumbersValues = document.getElementsByClassName('addedNumbersInputs');
+
     for (let i = 0; i < addedNumbersValues.length; i++) {
-      let addedPair= {
-        typeOfNumber:addedNumbersNameTypes[i].value,
-        number:addedNumbersValues[i].value
+      let addedPair = {
+        typeOfNumber: addedNumbersNameTypes[i].value,
+        number: addedNumbersValues[i].value
       };
       basicPairAndAddedPairs.push(addedPair)
-     };
+    };
 
-   callServer.saveNewContact(name, surName, email, basicPairAndAddedPairs);
+    let formValues = {
+      name: name,
+      surName: surName,
+      email: email,
+      numbers: basicPairAndAddedPairs
+    }
+
+   return formValues
+  }
+
+
+  createNewContact() {
+    let extractedValues= this.extractValues();
+ 
+    callServer.saveNewContact(extractedValues.name, extractedValues.surName, extractedValues.email, extractedValues.numbers)
+      .then(Jresponse => Jresponse.json())
+      .then(response => {
+        console.log(response);
+        if (response.response === 'contact saved') {
+          alert(response.response)
+        } else if (response.response === "userAlreadyExist") {
+          
+           
+          this.setState({
+            contactAllreadyExists: true
+          })
+          alert(response.response + "!If you want to overwrite press overwrite button and if you want save anyway press save anyway button!")
+        }
+      })
+
+  }
+
+
+
+  addSaveAndOverwriteButtons() {
+
+    let contactFormDiv = document.getElementById("saveAndOverwriteDiv");
+
+    let overWriteButton = document.createElement("BUTTON");
+    overWriteButton.setAttribute("type", "button");
+    overWriteButton.setAttribute("class", "saveAndOverwriteButtons");
+    overWriteButton.innerHTML = "Overwrite contact!"
+    overWriteButton.onclick = this.handleOverwriteButton.bind(this);
+    contactFormDiv.appendChild(overWriteButton);
+
+    let saveAnywayButton = document.createElement("BUTTON");
+    saveAnywayButton.setAttribute("type", "button");
+    saveAnywayButton.setAttribute("class", "saveAndOverwriteButtons");
+    saveAnywayButton.innerHTML = "Save Anyway!"
+    saveAnywayButton.onclick = this.handleSaveAnywayButton.bind(this);
+    contactFormDiv.appendChild(saveAnywayButton);
+
+    clearInterval(this.state.intervalId)
+  }
+
+   handleOverwriteButton() {
+    let extractedValues= this.extractValues();
+    callServer.overwrite(extractedValues.name, extractedValues.surName, extractedValues.email, extractedValues.numbers,true)
+    .then(Jresponse => Jresponse.json())
+    .then(response=>alert(response.response))
+
+  
+  }
+
+  handleSaveAnywayButton() {
+    let extractedValues= this.extractValues();
+    callServer.saveAnyway(extractedValues.name, extractedValues.surName, extractedValues.email, extractedValues.numbers,true)
+    .then(Jresponse => Jresponse.json())
+    .then(response=>alert(response.response))
+
+  }
+
+  removeSaveAndOverwriteButtons() {
+    this.setState({
+      contactAllreadyExists: false
+    });
+
   }
 
   removeAddedNumberFields() {
-    let placeForNewNumberInput = document.getElementById("divForAddedNumberInputsAndButtonsDivs"); /*ovde*/ 
+    let placeForNewNumberInput = document.getElementById("divForAddedNumberInputsAndButtonsDivs"); /*ovde*/
     placeForNewNumberInput.innerHTML = "";
   }
 
@@ -113,11 +191,33 @@ class Modal extends React.Component {
     closeCreateModal();
     this.removeAddedNumberFields();
 
+
+  }
+
+
+
+  componentDidMount() {
+
+    
+    let intervalId = setInterval(() => {
+      if (this.state.contactAllreadyExists === true) {
+        this.addSaveAndOverwriteButtons();
+      }
+    }, 3000);
+
+    this.setState({
+      intervalId: intervalId
+    })
+
+
+  }
+  componentWillUnmount() {
+    clearInterval(this.state.intervalId)
   }
 
 
   render() {
-
+    console.log(this.state.contactAllreadyExists);
     return (
       <div className="modal" >
         <section className="modal-main">
@@ -148,8 +248,10 @@ class Modal extends React.Component {
             </div>
 
 
-            <button id="handleSaveContact" onClick={this.createNewContact} >Save contact!</button>
+            <button id="handleSaveContact" onClick={this.createNewContact.bind(this)} >Save contact!</button>
             <button id="closeCreateModalButton" onClick={this.handleCloseCreateModal.bind(this)}>Close Create Contact</button>
+            <div id="saveAndOverwriteDiv"></div>
+
           </div>
 
 

@@ -138,6 +138,12 @@
     align-items: center;
 }
 
+.saveAndOverwriteButtons {
+    padding: 0px;
+    align-items: center;
+    padding: 2px 4px;
+}
+
 #closeCreateModalButton {
     width: 50%;
     margin-top: 2%;

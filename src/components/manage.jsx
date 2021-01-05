@@ -1,7 +1,7 @@
 import React from 'react';
 import "./manage.css";
 import Modal from './modal'
-import callServer from '../servis/phonebookServis';
+
 
 class Managepage extends React.Component {
     constructor(props) {
@@ -40,7 +40,7 @@ class Managepage extends React.Component {
 
 
     render() {
-        console.log(this.state.showCreateModal)
+       
 
         return (
             <div className="managePage" >

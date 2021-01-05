@@ -17,7 +17,7 @@ class Newmemberpage extends Component {
                     <input type="password" className="newmemberInput" id="userPassword" name="userPassword"/>
                     <label  className="newmemberP">Age:</label>
                     <input type="number" className="newmemberInput" id="userAge" name="userAge"/>
-                    <label  className="newmemberP">Age:</label>
+                    <label  className="newmemberP">Picture:</label>
                     <input type="file"  id="avatar" name="avatar"/>
                     <input type="submit" value="Submit" id="newmemberButton"/>
                 </form>
