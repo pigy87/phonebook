@@ -61,6 +61,42 @@ footer {
     text-align: center;
 }
 
+#contactsData {
+    display: flex;
+    position: fixed;
+    height: 80%;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+}
+
+#contactsDataTable {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-height: -webkit-fill-available;
+    overflow: auto;
+}
+
+tbody {
+    border: 1px outset white;
+    width: 90%;
+    display: table;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+td {
+    width: 25%;
+}
+
+.closeButton {
+    width: 70px;
+}
+
 
 /*media queris*/
 

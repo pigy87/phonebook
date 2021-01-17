@@ -1,8 +1,8 @@
 import React from 'react';
-import "./modal.css";
+import "./modalCreate.css";
 import callServer from '../servis/phonebookServis';
 
-class Modal extends React.Component {
+class Createmodal extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({
@@ -188,9 +188,10 @@ class Modal extends React.Component {
 
   handleCloseCreateModal() {
     let closeCreateModal = this.props.closeCreateModal;
+    let refreshContactTable=this.props.getContacts;
     closeCreateModal();
+    refreshContactTable();
     this.removeAddedNumberFields();
-
 
   }
 
@@ -263,4 +264,4 @@ class Modal extends React.Component {
 };
 
 
-export default Modal
+export default Createmodal

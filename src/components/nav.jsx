@@ -12,11 +12,11 @@ class Nav extends React.Component {
             loggedIn: false,
             redirect: null
         })
-        console.log("constructor")
+      
     }
 
     componentDidMount() {
-        console.log('component did mount');
+       
         Emitter.on("user_is_logged", (payload) => {
 
             return this.setState({
@@ -36,7 +36,7 @@ class Nav extends React.Component {
 
     render() {
         
-        console.log('render')
+       
 
         return (
             <div className="divnav">

@@ -68,6 +68,8 @@
     transform: translate(-50%, -50%);
     text-align: center;
     padding: 2% 0;
+    background-color: #5c5b5b;
+    opacity: 0.9
 }
 
 .contactForm {
