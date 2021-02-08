@@ -45,11 +45,51 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 auto;
 }
 
 #closeContactDataModalButton {
     width: 50%;
     margin-top: 2%;
+}
+
+
+/*ovde je doddano*/
+
+.numbers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%
+}
+
+#divForAddedNumberInputsAndButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%
+}
+
+.addedNumbersInputs {
+    width: 72%
+}
+
+.addedNumberInputAndAddButtonDiv {
+    width: 100%
+}
+
+.addNumberInputButton {
+    width: 4%;
+    padding: 0px;
+    align-items: center;
+}
+
+.deleteNumberInputButton {
+    width: 4%;
+    padding: 0px;
+    align-items: center;
 }
 
 @keyframes fadeIn {

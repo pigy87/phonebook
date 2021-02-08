@@ -141,8 +141,8 @@ const callServer = {
         })
     },
 
-    updateUser(name, surName, email, numbers) {
-        console.log('saveAnyway conatct method')
+    updateContact(id, name, surName, email, numbers) {
+        console.log('update contact method')
         return fetch(baseUrl + "/updatecontact", {
             method: 'POST',
             cache: 'no-cache',
@@ -152,6 +152,7 @@ const callServer = {
                 'Bearer': `${token}`
             },
             body: JSON.stringify({
+                contactId: id,
                 contactName: name,
                 contactSurName: surName,
                 contactEmail: email,

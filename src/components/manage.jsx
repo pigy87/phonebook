@@ -13,13 +13,13 @@ class Managepage extends React.Component {
             showCreateModal: false,
             showUpdateModal: false,
             showDeleteModal: false,
-            showContactDataModal:false,
-            contactList:null,
-            contactData:null,
+            showContactDataModal: false,
+            contactList: null,
+            contactData: null,
             contactRenderd: false
         })
         console.log('constructor');
-        
+
         this.getContaDataByclick = this.getContaDataByclick.bind(this);
         this.renderD = this.renderContactsList.bind(this)
     }
@@ -57,23 +57,25 @@ class Managepage extends React.Component {
     };
 
 
-  async  getContacts(){
+    async getContacts() {
         let Jresponse = await callServer.getAllContacts();
         let response = await Jresponse.json();
         this.setState({
-            contactList:response.contacts
+            contactList: response.contacts
         })
     }
 
-    renderContactsList(contacts){
-       return contacts.map((contact, index) => {
+    renderContactsList(contacts) {
+        return contacts.map((contact, index) => {
             return (
-                <tr key={contact.ContactId} id={contact.ContactId} onClick={this.getContaDataByclick}>
-                    <td>{contact.ContactId}</td>
-                    <td>{contact.ContactName}</td>
-                    <td>{contact.ContactSurname}</td>
-                    <td>{contact.ContactEmail}</td>
-                </tr>
+                
+                    <tr key={contact.ContactId} id={contact.ContactId} onClick={this.getContaDataByclick}>
+                        <td>{contact.ContactId}</td>
+                        <td>{contact.ContactName}</td>
+                        <td>{contact.ContactSurname}</td>
+                        <td>{contact.ContactEmail}</td>
+                    </tr>
+                
             )
         })
     }
@@ -94,7 +96,8 @@ class Managepage extends React.Component {
         });
     }
 
-    handleOpenContacts(){
+    handleOpenContacts() {
+        this.getContacts()
         let tbody = document.querySelector('tbody');
         tbody.style.display = 'table'
     }
@@ -105,15 +108,19 @@ class Managepage extends React.Component {
         tbody.style.display = 'none'
     }
 
-  async getContaDataByclick(clickedContact) {
+    async getContaDataByclick(clickedContact) {
         console.log(clickedContact.nativeEvent.path[1].id);
         let Jresponse = await callServer.getContactById(clickedContact.nativeEvent.path[1].id);
         let response = await Jresponse.json();
         console.log(response.data);
         this.setState({
-            contactData:response.data
+            contactData: response.data
         })
         this.showContactDataModal();
+    }
+
+    handleDelete() {
+        console.log('delete button');
     }
 
 
@@ -133,22 +140,22 @@ class Managepage extends React.Component {
                 <div id="manageContact">
                     <button className="manageButtons" onClick={this.showCreateModal.bind(this)}>Create contact</button >
                     <button className="manageButtons" onClick={this.showUpdateModal.bind(this)}>Update contact</button>
-                    <button className="manageButtons" onClick={this.showDeleteModal.bind(this)}>Delete contact</button>
-                    <button className="manageButtons" onClick={this.handleOpenContacts.bind(this)}>Open contacts</button>
+                    <button className="manageButtons" onClick={this.handleDelete.bind(this)}>Delete contact</button>
+                    <button className="manageButtons" onClick={this.handleOpenContacts.bind(this)}>Refresh contacts</button>
                 </div>
                 <div id="contactsData">
                     <p>Find by Contact Name</p>
                     <input id="findUserInput" onChange={this.findByUsername.bind(this)} type="text" />
                     <table id="contactsDataTable">
                         <tbody>
-                           {this.state.contactList&&this.renderContactsList(this.state.contactList)}
+                            {this.state.contactList && this.renderContactsList(this.state.contactList)}
                         </tbody>
                     </table>
                     <button className="closeButton" onClick={this.handleCloseDataButton.bind(this)}>Close contacts</button>
                 </div>
                 {this.state.showCreateModal && (<Createmodal closeCreateModal={this.hideCreateModal} getContacts={this.getContacts.bind(this)}></Createmodal>)}
                 {this.state.showUpdateModal && (<Updatemodal closeUpdateModal={this.hideUpdateModal}></Updatemodal>)}
-                {this.state.showContactDataModal&& (<Contactdatamodal closeContactDataModal={this.hideContactDataModal} contactData={this.state.contactData}></Contactdatamodal>)}
+                {this.state.showContactDataModal && (<Contactdatamodal closeContactDataModal={this.hideContactDataModal} contactData={this.state.contactData}></Contactdatamodal>)}
                 <footer><p className="footerP">Made by Nemanja Tomic</p></footer>
             </div>
         );

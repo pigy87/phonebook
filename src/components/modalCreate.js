@@ -59,7 +59,7 @@ class Createmodal extends React.Component {
 
     this.setState({ inputNumberId: this.state.inputNumberId + 1 })
     var input = document.createElement("INPUT");
-    input.setAttribute("type", "number");
+    input.setAttribute("type", "text");
     input.setAttribute("name", `number${this.state.inputNumberId}`);
     input.setAttribute("id", `number${this.state.inputNumberId}`);
     input.setAttribute("class", "addedNumbersInputs");
@@ -242,7 +242,7 @@ class Createmodal extends React.Component {
               </select>
 
               <div id="basicNumberInputAndAddButton">
-                <input type="number" name="number0" id="number0" className="firstNumberInput" />
+                <input type="text" name="number0" id="number0" className="firstNumberInput" />
                 <button type="button" className="addNumberInputButton" onClick={this.addMoreNumberFields.bind(this)}>+</button>
               </div>
               <div id="divForAddedNumberInputsAndButtonsDivs" ></div>
