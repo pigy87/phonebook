@@ -8,6 +8,6 @@ const Emitter = {
     emit: (event, payload) => eventEmitter.emit(event, payload)
 };
 Object.freeze(Emitter);
-
+console.log("proba");
 
 export default Emitter;
